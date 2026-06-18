@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0f1216" />
+<title>Snow's World - presented by Snow Studios</title>
+<meta name="description" content="Snow Studios presents Snow's World: a small, warm place made of snow, cloud, and quiet wonder." />
+<meta property="og:title" content="Snow Studios presents Snow's World" />
+<meta property="og:description" content="A small, warm place made of snow, cloud, and quiet wonder." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#1a1a2e; --ink-soft:#4a4a5a; --muted:#7a7a8a;
+    --pink:#f4b4c8; --pink-deep:#c95e84; --blue:#a8d8ea; --blue-deep:#3e90af;
+    --mint:#b8e6d0; --peach:#f8d9c8; --lav:#c8b8e8; --lav-deep:#8068bc;
+    --bone:#f7fbff; --white:#ffffff;
+    --night:#0f1216; --night-2:#161b22;
+    --display:"Quicksand", system-ui, sans-serif;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --script:"Great Vibes", cursive;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--display); color:var(--ink); background:var(--night); overflow-x:hidden}
+  img{display:block; max-width:100%}
+  a{color:inherit; text-decoration:none}
+  .eyebrow{font-family:var(--display); font-weight:600; letter-spacing:.42em; text-transform:uppercase; font-size:.66rem}
+
+  /* ============ THRESHOLD (the dark Snow Studios frame) ============ */
+  .threshold{
+    position:relative; min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    background:
+      radial-gradient(120% 80% at 50% 18%, #1c232c 0%, #12161b 46%, #0c0f13 100%);
+    color:#e9e7e2; padding:2rem; overflow:hidden;
+  }
+  .threshold .stars{position:absolute; inset:0; pointer-events:none}
+  .threshold .star{position:absolute; width:2px; height:2px; border-radius:50%;
+    background:#fff; opacity:.0; animation:twinkle 4s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.08; transform:scale(.7)} 50%{opacity:.7; transform:scale(1)}}
+
+  .presents{position:relative; z-index:2}
+  .presents .studio{font-family:var(--display); font-weight:600; letter-spacing:.5em;
+    text-transform:uppercase; font-size:.7rem; color:#9aa6b2}
+  .presents .presentword{font-family:var(--serif); font-style:italic; font-size:1.05rem;
+    color:#7e8b97; letter-spacing:.04em; margin-top:1.1rem; opacity:.9}
+  .presents h1{font-family:var(--script); font-weight:400; font-size:clamp(4rem,13vw,9.5rem);
+    line-height:.92; margin:.4rem 0 0; color:#fff;
+    text-shadow:0 0 38px rgba(168,216,234,.28), 0 2px 0 rgba(0,0,0,.2)}
+  .presents .tag{font-family:var(--serif); font-size:clamp(1.05rem,2.4vw,1.5rem);
+    color:#aab4be; margin-top:1.1rem; letter-spacing:.02em}
+  .enter{margin-top:3.2rem; display:inline-flex; flex-direction:column; align-items:center; gap:.85rem;
+    color:#cdd6df; cursor:pointer}
+  .enter .ring{width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.35);
+    display:grid; place-items:center; animation:bob 2.4s ease-in-out infinite}
+  .enter .ring svg{width:16px; height:16px}
+  .enter span{font-family:var(--display); font-weight:600; letter-spacing:.34em; text-transform:uppercase; font-size:.62rem}
+  @keyframes bob{0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)}}
+  /* soft falling color flakes drifting down even in the dark, hinting at the world below */
+  .threshold .hint-flake{position:absolute; top:-20px; border-radius:50%; opacity:.0;
+    animation:hintfall linear infinite}
+  @keyframes hintfall{0%{transform:translateY(-20px); opacity:0}
+    12%{opacity:.85} 100%{transform:translateY(102vh); opacity:0}}
+
+  /* ============ THE WORLD (bright, warm) ============ */
+  .world{position:relative;
+    background:
+      linear-gradient(180deg, #eaf6ff 0%, #f4f0fb 22%, #fdf2f6 52%, #fbf7ff 76%, #eef7ff 100%);
+    color:var(--ink); overflow:hidden;
+  }
+  .snowfield{position:fixed; inset:0; pointer-events:none; z-index:1}
+  .flake{position:absolute; top:-24px; border-radius:50%; will-change:transform}
+  @keyframes fall{to{transform:translateY(105vh)}}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 1.5rem; position:relative; z-index:3}
+
+  /* world hero */
+  .w-hero{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; position:relative; padding:7rem 1.5rem 5rem}
+  .w-hero .cloud-stage{position:relative; margin-bottom:.5rem}
+  .w-hero .cloud{width:min(360px,64vw); filter:drop-shadow(0 26px 40px rgba(120,140,200,.22));
+    animation:floaty 6s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-.6deg)} 50%{transform:translateY(-16px) rotate(.6deg)}}
+  .w-hero .eyebrow{color:var(--lav-deep); margin-bottom:1.1rem}
+  .w-hero h2{font-family:var(--script); font-weight:400; font-size:clamp(3.6rem,11vw,8rem);
+    line-height:.9; color:var(--ink);
+    background:linear-gradient(120deg,#c95e84 0%, #8068bc 48%, #3e90af 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+  .w-hero p.lede{font-family:var(--serif); font-size:clamp(1.25rem,2.6vw,1.75rem);
+    color:var(--ink-soft); max-width:34ch; margin:1.4rem auto 0; line-height:1.4}
+  .scroll-cue{margin-top:3rem; font-family:var(--display); font-weight:600; letter-spacing:.3em;
+    text-transform:uppercase; font-size:.6rem; color:var(--muted); animation:bob 2.4s ease-in-out infinite}
+
+  section.scene{padding:6.5rem 0; position:relative}
+  .scene-head{text-align:center; margin-bottom:3.2rem}
+  .scene-head .eyebrow{display:inline-block; padding:.45rem 1rem; border-radius:999px;
+    background:rgba(255,255,255,.6); backdrop-filter:blur(4px)}
+  .scene-head h3{font-family:var(--display); font-weight:700; font-size:clamp(2rem,5vw,3.2rem);
+    color:var(--ink); margin-top:1rem; line-height:1.05}
+  .scene-head p{font-family:var(--serif); font-size:clamp(1.1rem,2.2vw,1.4rem); color:var(--ink-soft);
+    max-width:46ch; margin:1rem auto 0; line-height:1.45}
+
+  /* the cast */
+  .cast{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem}
+  .friend{background:rgba(255,255,255,.66); border:1px solid rgba(255,255,255,.9);
+    border-radius:30px; padding:2.4rem 1.6rem 2rem; text-align:center;
+    box-shadow:0 22px 50px -28px rgba(110,130,190,.5); backdrop-filter:blur(6px);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .friend:hover{transform:translateY(-10px)}
+  .friend .pic{height:200px; display:grid; place-items:center}
+  .friend .pic img{max-height:200px; width:auto;
+    animation:floaty 7s ease-in-out infinite}
+  .friend:nth-child(2) .pic img{animation-delay:-1.5s}
+  .friend:nth-child(3) .pic img{animation-delay:-3s}
+  .friend .tagdot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-bottom:.7rem}
+  .friend h4{font-family:var(--display); font-weight:700; font-size:1.3rem; color:var(--ink)}
+  .friend p{font-family:var(--serif); color:var(--muted); font-size:1.05rem; margin-top:.4rem; font-style:italic}
+
+  /* the workshop as a place */
+  .place{display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center;
+    background:rgba(255,255,255,.5); border:1px solid rgba(255,255,255,.85);
+    border-radius:36px; padding:3rem; box-shadow:0 30px 60px -34px rgba(110,130,190,.55)}
+  .place h3{font-family:var(--display); font-weight:700; font-size:clamp(1.9rem,4vw,2.7rem); line-height:1.05}
+  .place .eyebrow{color:var(--pink-deep); margin-bottom:1rem; display:block}
+  .place p{font-family:var(--serif); font-size:1.25rem; color:var(--ink-soft); margin-top:1.1rem; line-height:1.5}
+  .place .chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem}
+  .place .chip{font-family:var(--display); font-weight:600; font-size:.82rem; padding:.5rem .95rem; border-radius:999px;
+    background:#fff; color:var(--ink-soft); border:1px solid rgba(0,0,0,.05)}
+  .place .art{position:relative; aspect-ratio:1; border-radius:28px;
+    background:radial-gradient(circle at 50% 42%, #ffffff 0%, #eaf3ff 60%, #e4ecfb 100%);
+    display:grid; place-items:center; overflow:hidden}
+  .place .art img{width:72%; animation:floaty 6.5s ease-in-out infinite}
+
+  /* a quiet line */
+  .quiet{text-align:center; padding:7rem 1.5rem}
+  .quiet p{font-family:var(--serif); font-style:italic; font-size:clamp(1.6rem,4.4vw,2.8rem);
+    color:var(--lav-deep); max-width:24ch; margin:0 auto; line-height:1.35}
+
+  /* landscape footer */
+  .land{position:relative; margin-top:2rem}
+  .land img{width:100%; display:block}
+  .land .veil{position:absolute; inset:0; background:linear-gradient(180deg, rgba(238,247,255,0) 0%, rgba(238,247,255,.0) 60%, rgba(247,251,255,.35) 100%)}
+  footer{background:#eef7ff; text-align:center; padding:3.5rem 1.5rem 4rem; position:relative; z-index:3}
+  footer .wm{font-family:var(--script); font-size:2.6rem; color:var(--ink); line-height:1}
+  footer .by{font-family:var(--display); font-weight:600; letter-spacing:.28em; text-transform:uppercase;
+    font-size:.6rem; color:var(--muted); margin-top:.6rem}
+  footer .exit{margin-top:1.8rem}
+  footer .exit a{font-family:var(--display); font-weight:600; font-size:.92rem; color:var(--ink-soft);
+    border-bottom:1px solid rgba(0,0,0,.15); padding-bottom:2px}
+  footer .copy{font-family:var(--display); font-size:.78rem; color:var(--muted); margin-top:2.4rem}
+
+  @media(max-width:820px){
+    .cast{grid-template-columns:1fr; max-width:380px; margin:0 auto}
+    .place{grid-template-columns:1fr; padding:2rem; gap:2rem}
+    .place .art{max-width:300px; margin:0 auto}
+  }
+</style>
+</head>
+<body>
+
+  <!-- THRESHOLD -->
+  <header class="threshold" id="top">
+    <div class="stars" id="stars"></div>
+    <div class="presents">
+      <div class="studio">Snow Studios</div>
+      <div class="presentword">presents</div>
+      <h1>Snow&rsquo;s World</h1>
+      <div class="tag">A small, warm place made of snow, cloud, and quiet wonder.</div>
+    </div>
+    <a class="enter" href="#enter">
+      <span class="ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </span>
+      <span>Enter</span>
+    </a>
+  </header>
+
+  <!-- THE WORLD -->
+  <main class="world" id="enter">
+    <div class="snowfield" id="snowfield"></div>
+
+    <section class="w-hero">
+      <div class="cloud-stage">
+        <img class="cloud" src="/assets/cloud-mascot.webp" alt="A smiling snow cloud raining soft pastel flakes" />
+      </div>
+      <div class="eyebrow">Welcome inside</div>
+      <h2>Snow&rsquo;s World</h2>
+      <p class="lede">Where the snow is soft, the cloud is kind, and everything is made with a little care.</p>
+      <div class="scroll-cue">Wander</div>
+    </section>
+
+    <section class="scene wrap">
+      <div class="scene-head">
+        <span class="eyebrow">The friends who live here</span>
+        <h3>You are not alone in here</h3>
+        <p>A few small souls keep this place warm. They do not sell you anything. They just like the snow.</p>
+      </div>
+      <div class="cast">
+        <div class="friend">
+          <div class="pic"><img src="/assets/cloud-mascot.webp" alt="The cloud" /></div>
+          <span class="tagdot" style="background:var(--pink)"></span>
+          <h4>The Cloud</h4>
+          <p>makes the snow</p>
+        </div>
+        <div class="friend">
+          <div class="pic"><img src="/assets/fox-character.webp" alt="The fox" /></div>
+          <span class="tagdot" style="background:var(--blue)"></span>
+          <h4>The Fox</h4>
+          <p>makes the things</p>
+        </div>
+        <div class="friend">
+          <div class="pic"><img src="/assets/bunny-character.webp" alt="The bunny" /></div>
+          <span class="tagdot" style="background:var(--lav)"></span>
+          <h4>The Bunny</h4>
+          <p>keeps the company</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene wrap">
+      <div class="place">
+        <div class="copy-col">
+          <span class="eyebrow">A place inside the world</span>
+          <h3>The Magic Workshop</h3>
+          <p>Tucked at the warm end of the world, there is a small workshop. Inside, ordinary things are tidied, polished, and made a little more beautiful. You can peek in. You do not have to buy a thing.</p>
+          <div class="chips">
+            <span class="chip">words</span>
+            <span class="chip">pictures</span>
+            <span class="chip">tidy little files</span>
+            <span class="chip">launch-day copy</span>
+            <span class="chip">careful hands</span>
+          </div>
+        </div>
+        <div class="art"><img src="/assets/fox-character.webp" alt="The fox at work in the workshop" /></div>
+      </div>
+    </section>
+
+    <section class="quiet">
+      <p>&ldquo;Small, warm, and made with care.&rdquo;</p>
+    </section>
+
+    <div class="land">
+      <img src="/assets/winter-landscape.webp" alt="A soft snowy landscape with bare winter trees" />
+      <div class="veil"></div>
+    </div>
+
+    <footer>
+      <div class="wm">Snow&rsquo;s World</div>
+      <div class="by">presented by Snow Studios</div>
+      <div class="exit"><a href="https://snowdigitalgroup.com/services">the studio also makes things &rarr;</a></div>
+      <div class="copy">&copy; 2026 Snow Studios. A small, warm place.</div>
+    </footer>
+  </main>
+
+<script>
+  // dark-frame stars
+  (function(){
+    const s=document.getElementById('stars'); if(!s) return;
+    for(let i=0;i<70;i++){const d=document.createElement('div');d.className='star';
+      d.style.left=Math.random()*100+'%';d.style.top=Math.random()*100+'%';
+      d.style.animationDelay=(Math.random()*4)+'s';s.appendChild(d);}
+    // a few colored hint flakes drifting in the dark
+    const cols=['#f4b4c8','#a8d8ea','#c8b8e8'];
+    const head=document.querySelector('.threshold');
+    for(let i=0;i<14;i++){const f=document.createElement('div');f.className='hint-flake';
+      const sz=4+Math.random()*5;f.style.width=sz+'px';f.style.height=sz+'px';
+      f.style.left=Math.random()*100+'%';f.style.background=cols[i%3];
+      f.style.animationDuration=(7+Math.random()*7)+'s';f.style.animationDelay=(Math.random()*8)+'s';
+      head.appendChild(f);}
+  })();
+
+  // world snowfield - soft pastel flakes
+  (function(){
+    const field=document.getElementById('snowfield'); if(!field) return;
+    const cols=['#ffffff','#f4b4c8','#a8d8ea','#c8b8e8','#b8e6d0'];
+    const N=window.innerWidth<700?32:60;
+    for(let i=0;i<N;i++){
+      const f=document.createElement('div');f.className='flake';
+      const sz=3+Math.random()*8;
+      f.style.width=sz+'px';f.style.height=sz+'px';
+      f.style.left=Math.random()*100+'%';
+      f.style.background=cols[Math.floor(Math.random()*cols.length)];
+      f.style.opacity=(.35+Math.random()*.5).toFixed(2);
+      const dur=9+Math.random()*14;
+      f.style.animation='fall '+dur+'s linear infinite';
+      f.style.animationDelay=(-Math.random()*dur)+'s';
+      field.appendChild(f);
+    }
+  })();
+
+  // gentle parallax on the floating cloud
+  (function(){
+    const cloud=document.querySelector('.w-hero .cloud');
+    if(!cloud) return;
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY;
+      cloud.style.transform='translateY('+(y*0.12)+'px)';
+    },{passive:true});
+  })();
+</script>
+</body>
+</html>
